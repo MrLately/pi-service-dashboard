@@ -6,6 +6,7 @@
     <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='icons/favicon-32x32.png') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
 </head>
 <body>
     <div class="user-greeting">Hello, {{ user_name }}!</div>
@@ -17,11 +18,11 @@
     </div>
     <div class="system-metrics">
         <h2>System Metrics</h2>
-        <p class="metric">CPU Load: <span>{{ cpu_load }}%</span></p>
-        <p class="metric">RAM Used: <span>{{ ram_used|round(2) }} GB</span> / {{ ram_total|round(2) }} GB</p>
-        {% for drive in drive_metrics %}
-            <p class="metric">{{ drive.label }} Used: <span>{{ drive.used|round(2) }} GB</span> / {{ drive.total|round(2) }} GB</p>
-        {% endfor %}
+        <p class="metric">CPU Load: <span id="cpu_load"></span></p>
+        <p class="metric">RAM Used: <span id="ram_used"></span> GB / <span id="ram_total"></span> GB</p>
+        <div id="drives_container">
+            <!-- Drive metrics will be dynamically inserted here -->
+        </div>
     </div>
 </body>
 </html>
