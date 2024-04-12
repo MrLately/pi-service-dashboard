@@ -2,7 +2,7 @@
 
 # Function to print in color
 echo_color() {
-    echo -e "\036[0;32m$1\036[0m"
+    echo -e "\033[0;36m$1\033[0m"
 }
 
 if [ "$(id -u)" != "0" ]; then
