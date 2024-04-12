@@ -84,8 +84,8 @@ IP_ADDRESS=$(hostname -I | awk '{print $1}')
 CONFIG_FILE="/home/pi/pi-service-dashboard/pihome/config.json"
 
 jq --arg ip "$IP_ADDRESS" '
-    (.services[] | select(.name=="Plex") | .url)="http://\($ip):32400/web" |
     (.services[] | select(.name=="Files") | .url)="http://\($ip):8080" |
+    (.services[] | select(.name=="Plex") | .url)="http://\($ip):32400/web" |
     (.services[] | select(.name=="Pi-hole") | .url)="http://\($ip)/admin"
 ' $CONFIG_FILE > temp.json && mv temp.json $CONFIG_FILE
 
