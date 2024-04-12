@@ -75,6 +75,8 @@ source /home/pi/pi-service-dashboard/venv/bin/activate
 pip install Flask psutil
 deactivate
 
+sudo chown -R pi:pi /home/pi/pi-service-dashboard
+
 # Update the configuration with the Raspberry Pi's IP address
 echo "Updating configuration with Raspberry Pi's IP address..."
 apt-get install jq -y  # Ensure jq is installed
@@ -147,10 +149,9 @@ mkdir -p /mnt/nas/music
 mkdir -p /mnt/nas/documents
 
 echo "Installing Pi-hole..."
+cd ~  # Change directory to the home directory
 git clone --depth 1 https://github.com/pi-hole/pi-hole.git Pi-hole
-cd "Pi-hole/automated install/"
+cd Pi-hole/automated\ install/
 sudo bash basic-install.sh
-
-sudo chown -R pi:pi /home/pi/pi-service-dashboard
 
 echo "Setup complete. Visit http://${IP_ADDRESS}:5000 in your browser to access the web application."
