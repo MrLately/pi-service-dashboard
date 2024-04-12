@@ -3,7 +3,7 @@ for any web service running on the pi. This comes with
 File Browser, Plex, and Pi-hole.
 
 During the setup it asks you to select a drive. It will
-WIPE AND FORMAT the drive to ext and mount it as the NAS
+WIPE AND FORMAT the drive to ext4 and mount it as the NAS
 and Samba Share so you can also mount it from other
 devices on your network. This setup assumes you have new
 drive for nas and dont mind it being wiped.
