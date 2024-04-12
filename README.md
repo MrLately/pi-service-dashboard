@@ -8,6 +8,9 @@ and Samba Share so you can also mount it from other
 devices on your network. This setup assumes you have new
 drive for nas and dont mind it being wiped.
 
+You can add more services by following the flow in config.json.
+add name and url and it will make a button for it in the homepage!
+Can be local or not, doesn't matter.
 
 https://youtu.be/I0vmhCSVJdc?si=8_aEeWgAN5-MrJO9
 
