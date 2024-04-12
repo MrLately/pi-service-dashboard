@@ -1,0 +1,99 @@
+.user-greeting {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.dashboard-title {
+    text-align: center;
+    margin-top: 20px; /* Adjust as needed */
+}
+
+
+.services-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.service-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.service-button:hover {
+    background-color: #0056b3;
+}
+
+/* System Metrics Styles */
+.system-metrics {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+.system-metrics h2 {
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+.metric {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.metric span {
+    font-weight: bold;
+}
+
+/* Existing styles... */
+
+@media (max-width: 768px) {
+    .user-greeting, .dashboard-title {
+        font-size: 20px; /* Smaller font size for smaller screens */
+    }
+
+    .service-button {
+        padding: 8px 16px; /* Slightly reduce padding */
+        font-size: 14px; /* Reduce font size to fit more content */
+    }
+
+    .metric {
+        font-size: 14px; /* Smaller text for metrics */
+    }
+}
+
+@media (max-width: 480px) {
+    .services-container {
+        flex-direction: column; /* Stack service buttons vertically on very small screens */
+        align-items: center;
+    }
+
+    .system-metrics {
+        padding: 10px; /* Reduce padding */
+    }
+
+    .service-button {
+        margin: 5px; /* Ensure consistent margin */
+        width: 90%; /* Increase width to utilize more space */
+        text-align: center; /* Ensure text is centered within the button */
+    }
+}
+
+
+
+
+

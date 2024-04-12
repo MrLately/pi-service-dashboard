@@ -1,0 +1,13 @@
+{
+    "user_name": "MrLately",
+    "services": [
+        {"name": "Plex", "url": "http://plex.local:32400/web"},
+        {"name": "Files", "url": "http://samba.local:8080"},
+        {"name": "Pi-hole", "url": "http://pihole.local/admin"}
+    ],
+    "drives": [
+        {"mount_point": "/", "label": "Pi SD Card"},
+        {"mount_point": "/mnt/nas", "label": "NAS Drive"}
+    ]
+}
+

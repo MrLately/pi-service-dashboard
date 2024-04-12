@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Server Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="user-greeting">Hello, {{ user_name }}!</div>
+    <h1 class="dashboard-title">Home Server Dashboard</h1>
+    <div class="services-container">
+        {% for service in services %}
+            <a href="{{ service.url }}" class="service-button">{{ service.name }}</a>
+        {% endfor %}
+    </div>
+    <div class="system-metrics">
+        <h2>System Metrics</h2>
+        <p class="metric">CPU Load: <span>{{ cpu_load }}%</span></p>
+        <p class="metric">RAM Used: <span>{{ ram_used|round(2) }} GB</span> / {{ ram_total|round(2) }} GB</p>
+        {% for drive in drive_metrics %}
+            <p class="metric">{{ drive.label }} Used: <span>{{ drive.used|round(2) }} GB</span> / {{ drive.total|round(2) }} GB</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
+
+
+
+
+
