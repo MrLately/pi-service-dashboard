@@ -1,7 +1,12 @@
 #!/bin/bash
 
+# Function to print in color
+echo_color() {
+    echo -e "\033[0;32m$1\033[0m"
+}
+
 if [ "$(id -u)" != "0" ]; then
-   echo "This script must be run as root" 1>&2
+   echo_color "This script must be run as root" 1>&2
    exit 1
 fi
 
@@ -10,49 +15,49 @@ SHARE_NAME="nas"
 USER_NAME="pi"
 GROUP_NAME="pi"
 
-echo "Updating and upgrading Raspberry Pi OS..."
+echo_color "Updating and upgrading Raspberry Pi OS..."
 apt-get update && apt-get upgrade -y
 
-echo "Installing essential system packages including Python..."
+echo_color "Installing essential system packages including Python..."
 apt-get install python3-pip python3-venv samba samba-common-bin -y
 
-echo "Installing Plex Media Server..."
+echo_color "Installing Plex Media Server..."
 curl https://downloads.plex.tv/plex-keys/PlexSign.key | apt-key add -
 echo deb https://downloads.plex.tv/repo/deb public main | tee /etc/apt/sources.list.d/plexmediaserver.list
 apt-get update
 apt-get install plexmediaserver -y
 
-echo "Detecting connected external drives..."
+echo_color "Detecting connected external drives..."
 lsblk -o NAME,SIZE,MODEL -dp | grep -v "boot\|root"
-echo "Please enter the device name to use (e.g., /dev/sda):"
+echo_color "Please enter the device name to use (e.g., /dev/sda):"
 read -r SSD_DEVICE
 
 if [ -z "$SSD_DEVICE" ]; then
-    echo "No drive specified. Exiting."
+    echo_color "No drive specified. Exiting."
     exit 1
 fi
 
-echo "Drive selected: $SSD_DEVICE"
+echo_color "Drive selected: $SSD_DEVICE"
 
-echo "WARNING: This will format $SSD_DEVICE as Ext4, erasing all data. Proceed? (y/n)"
+echo_color "WARNING: This will format $SSD_DEVICE as Ext4, erasing all data. Proceed? (y/n)"
 read -r proceed
 if [ "$proceed" != "y" ]; then
-    echo "Operation cancelled."
+    echo_color "Operation cancelled."
     exit 1
 fi
 
-echo "Formatting the SSD to Ext4..."
+echo_color "Formatting the SSD to Ext4..."
 mkfs.ext4 $SSD_DEVICE
 
-echo "Creating mount point at $MOUNT_POINT"
+echo_color "Creating mount point at $MOUNT_POINT"
 mkdir -p $MOUNT_POINT
 UUID=$(blkid -o value -s UUID $SSD_DEVICE)
 echo "UUID=$UUID $MOUNT_POINT ext4 defaults,auto,users,rw,nofail 0 0" >> /etc/fstab
 
-echo "Mounting the SSD..."
+echo_color "Mounting the SSD..."
 mount -a
 
-echo "Configuring Samba Share named $SHARE_NAME for $MOUNT_POINT..."
+echo_color "Configuring Samba Share named $SHARE_NAME for $MOUNT_POINT..."
 cat >> /etc/samba/smb.conf <<EOT
 [$SHARE_NAME]
 path = $MOUNT_POINT
@@ -66,10 +71,10 @@ force user=$USER_NAME
 force group=$GROUP_NAME
 EOT
 
-echo "Restarting Samba..."
+echo_color "Restarting Samba..."
 systemctl restart smbd
 
-echo "Setting up Home Webapp Service..."
+echo_color "Setting up Home Webapp Service..."
 python3 -m venv /home/pi/pi-service-dashboard/venv
 source /home/pi/pi-service-dashboard/venv/bin/activate
 pip install Flask psutil
@@ -78,7 +83,7 @@ deactivate
 sudo chown -R pi:pi /home/pi/pi-service-dashboard
 
 # Update the configuration with the Raspberry Pi's IP address
-echo "Updating configuration with Raspberry Pi's IP address..."
+echo_color "Updating configuration with Raspberry Pi's IP address..."
 apt-get install jq -y  # Ensure jq is installed
 IP_ADDRESS=$(hostname -I | awk '{print $1}')
 CONFIG_FILE="/home/pi/pi-service-dashboard/pihome/config.json"
@@ -89,10 +94,10 @@ jq --arg ip "$IP_ADDRESS" '
     (.services[] | select(.name=="Pi-hole") | .url)="http://\($ip)/admin"
 ' $CONFIG_FILE > temp.json && mv temp.json $CONFIG_FILE
 
-echo "Configuration updated with IP: $IP_ADDRESS"
+echo_color "Configuration updated with IP: $IP_ADDRESS"
 
 # Create the systemd service file for the homepage service
-echo "Creating systemd service file at $ServiceFile"
+echo_color "Creating systemd service file at $ServiceFile"
 # Define the path to the systemd service file
 ServiceFile="/etc/systemd/system/homepage.service"
 cat > $ServiceFile << EOF
@@ -116,7 +121,7 @@ systemctl daemon-reload
 systemctl enable homepage.service
 systemctl start homepage.service
 
-echo "Installing FileBrowser..."
+echo_color "Installing FileBrowser..."
 bash <(curl -fsSL https://raw.githubusercontent.com/filebrowser/get/master/get.sh)
 cat > /etc/systemd/system/filebrowser.service << EOF
 [Unit]
@@ -137,21 +142,22 @@ systemctl daemon-reload
 systemctl enable filebrowser.service
 systemctl start filebrowser.service
 
-echo "owning nas..."
+echo_color "owning nas..."
 sudo chown -R pi:pi /mnt/nas
 sudo chmod -R 775 /mnt/nas
 
-echo "Creating commonly used directories within NAS..."
+echo_color "Creating commonly used directories within NAS..."
 mkdir -p /mnt/nas/photos
 mkdir -p /mnt/nas/movies
 mkdir -p /mnt/nas/series
 mkdir -p /mnt/nas/music
 mkdir -p /mnt/nas/documents
 
-echo "Installing Pi-hole..."
+echo_color "Installing Pi-hole..."
 cd ~  # Change directory to the home directory
 git clone --depth 1 https://github.com/pi-hole/pi-hole.git Pi-hole
 cd Pi-hole/automated\ install/
 sudo bash basic-install.sh
 
-echo "Setup complete. Visit http://${IP_ADDRESS}:5000 in your browser to access the web application."
+echo_color "Setup complete. Visit http://${IP_ADDRESS}:5000 in your browser to access the web application."
+
