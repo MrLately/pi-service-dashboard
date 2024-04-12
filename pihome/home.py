@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 import psutil
 import shutil
 import json
@@ -13,13 +13,15 @@ drives = config.get('drives', [])
 
 @app.route('/')
 def home():
-    #system metrics
+    return render_template('index.html', user_name=user_name, services=services)
+
+@app.route('/metrics')
+def metrics():
     cpu_load = psutil.cpu_percent()
     ram = psutil.virtual_memory()
     ram_used = ram.used / (1024 ** 3)
     ram_total = ram.total / (1024 ** 3)
 
-    #drive metrics
     drive_metrics = []
     for drive in drives:
         usage = shutil.disk_usage(drive['mount_point'])
@@ -29,9 +31,9 @@ def home():
             'total': usage.total / (1024 ** 3)
         })
 
-    return render_template('index.html', user_name=user_name, services=services, cpu_load=cpu_load,
-                           ram_used=ram_used, ram_total=ram_total, drive_metrics=drive_metrics)
+    return jsonify(cpu_load=cpu_load, ram_used=ram_used, ram_total=ram_total, drive_metrics=drive_metrics)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+
 
