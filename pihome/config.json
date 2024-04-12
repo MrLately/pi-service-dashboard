@@ -1,8 +1,8 @@
 {
     "user_name": "MrLately",
     "services": [
-        {"name": "Plex", "url": "http://plex.local:32400/web"},
         {"name": "Files", "url": "http://samba.local:8080"},
+        {"name": "Plex", "url": "http://plex.local:32400/web"},
         {"name": "Pi-hole", "url": "http://pihole.local/admin"}
     ],
     "drives": [
