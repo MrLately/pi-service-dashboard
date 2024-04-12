@@ -5,7 +5,7 @@ import json
 
 app = Flask(__name__)
 
-with open('/home/pi/pi-service-dashboard/home_os/config.json') as config_file:
+with open('/home/pi/pi-service-dashboard/pihome/config.json') as config_file:
     config = json.load(config_file)
 user_name = config.get('user_name', 'User')
 services = config.get('services', [])
