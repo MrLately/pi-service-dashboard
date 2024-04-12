@@ -81,7 +81,7 @@ sudo chown -R pi:pi /home/pi/pi-service-dashboard
 echo "Updating configuration with Raspberry Pi's IP address..."
 apt-get install jq -y  # Ensure jq is installed
 IP_ADDRESS=$(hostname -I | awk '{print $1}')
-CONFIG_FILE="/home/pi/pi-service-dashboard/home_os/config.json"
+CONFIG_FILE="/home/pi/pi-service-dashboard/pihome/config.json"
 
 jq --arg ip "$IP_ADDRESS" '
     (.services[] | select(.name=="Plex") | .url)="http://\($ip):32400/web" |
