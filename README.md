@@ -2,7 +2,8 @@
 
 The Pi Service Dashboard runs a Flask web app that acts as a hub for any web service running on the Pi. This comes with File Browser, Plex, and Pi-hole.
 
-![Screenshot_20240413_091709_Chrome](https://github.com/MrLately/pi-service-dashboard/assets/94589563/36d53fcf-5eb1-4eaa-8476-be52cc164f43)
+<img width="192" alt="ah" src="https://github.com/MrLately/pi-service-dashboard/assets/94589563/c2fcb472-7877-4c35-85c3-a5da28e6e307">
+
 
 During the setup it asks you to select a drive. It will WIPE AND FORMAT the drive to ext4 and mount it as the NAS and Samba Share so you can also mount it from other devices on your network. This setup assumes you have new drive for nas and dont mind it being wiped. In the pic I'm selecting /dev/sda bc thats the drive I'm wanting to wipe, format, and mount as the shared drive (nas drive).
 
