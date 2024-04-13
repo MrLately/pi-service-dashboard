@@ -34,7 +34,8 @@ Add bookmark or pwa to homescreen depending on mobile os. In the video above I s
 
 Can add the shared folder to "network storage" on just about any mobile or desktop environment. android iphone windows mac
 
-furthermore you can add more services later by following the flow in config.json. Add name and url and it will make a button for it in the homepage! While your're there edit the username to your own.
+furthermore you can add more services later by following the flow in config.json. Add name and url and it will make a button for it in the homepage! While your're there edit the username to your own. Dont worry about the 3 apps it comes with, the ips will be populated during install with the correct ip address. Don't
+modify the config before setup. Just do the install and mess with it later.
 
 Remember after any edits to run: sudo systemctl restart homepage.service
 
