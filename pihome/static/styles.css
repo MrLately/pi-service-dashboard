@@ -87,10 +87,20 @@
     }
 
     .service-button {
-        margin: 5px; /* Ensure consistent margin */
-        width: 90%; /* Increase width to utilize more space */
-        text-align: center; /* Ensure text is centered within the button */
-    }
+    display: inline-block;
+    padding: 10px;  // Adjust as needed to center the content
+    margin: 5px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;  // Rounded corners for a softer, app-like feel
+    transition: background-color 0.3s;
+    width: 80px;  // Fixed width for uniformity
+    height: 80px;  // Fixed height to make them square
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 
