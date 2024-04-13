@@ -10,13 +10,16 @@
     margin-top: 20px; /* Adjust as needed */
 }
 
-/* Adjusted services-container to use grid layout */
 .services-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Creates as many columns of at least 80px wide as can fit in the container */
-    gap: 10px; /* Sets space between grid items */
-    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(80px, max-content)); /* Ensures that each item takes up only as much space as it needs, up to a maximum */
+    gap: 10px;
+    justify-content: center; /* Center grid items when they don't fill all the column tracks */
+    justify-items: center; /* Aligns the items themselves to the center of their grid areas */
     align-items: center;
+    padding: 10px;
+    width: 100%; /* Ensure the container takes up the full width to properly center the content */
+    max-width: 100%; /* Optionally restrict the maximum width to better control layout */
 }
 
 /* Adjusted service-button to remove flex-related properties and padding */
@@ -93,6 +96,8 @@
         grid-template-columns: repeat(3, 1fr); /* Creates a 3-column layout */
         gap: 5px; /* Space between buttons */
         padding: 5px; /* Padding around the grid */
+        justify-content: center; /* Ensures content is centered in the container */
+        justify-items: center; /* Centers items within their cells horizontally */
         max-width: 100%; /* Makes sure the container doesn't exceed the width of the device */
     }
 
@@ -111,6 +116,7 @@
         white-space: normal; /* Allows text wrapping */
     }
 }
+
 
 
 
