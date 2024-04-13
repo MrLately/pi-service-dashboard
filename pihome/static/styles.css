@@ -22,7 +22,6 @@
     max-width: 100%; /* Optionally restrict the maximum width to better control layout */
 }
 
-/* Adjusted service-button to remove flex-related properties and padding */
 .service-button {
     padding: 0;
     margin: 0; /* Margin handled by grid gap */
@@ -37,10 +36,10 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    /* Added overflow handling */
     overflow: hidden;
-    white-space: nowrap;
+    white-space: normal; /* Change from nowrap to normal */
     text-overflow: ellipsis;
+    word-wrap: break-word; /* Ensures words can break and wrap */
 }
 
 .service-button:hover {
