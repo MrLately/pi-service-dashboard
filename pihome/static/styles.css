@@ -10,22 +10,34 @@
     margin-top: 20px; /* Adjust as needed */
 }
 
-
+/* Adjusted services-container to use grid layout */
 .services-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Creates as many columns of at least 80px wide as can fit in the container */
+    gap: 10px; /* Sets space between grid items */
     justify-content: center;
-    flex-wrap: wrap;
+    align-items: center;
 }
 
+/* Adjusted service-button to remove flex-related properties and padding */
 .service-button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 5px;
+    padding: 0;
+    margin: 0; /* Margin handled by grid gap */
     background-color: #007bff;
     color: white;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 15px; /* App-like rounded corners */
     transition: background-color 0.3s;
+    width: 80px; /* Set fixed width */
+    height: 80px; /* Set fixed height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* Added overflow handling */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .service-button:hover {
@@ -59,15 +71,13 @@
     font-weight: bold;
 }
 
-/* Existing styles... */
-
+/* Responsive styles */
 @media (max-width: 768px) {
     .user-greeting, .dashboard-title {
         font-size: 20px; /* Smaller font size for smaller screens */
     }
 
     .service-button {
-        padding: 8px 16px; /* Slightly reduce padding */
         font-size: 14px; /* Reduce font size to fit more content */
     }
 
@@ -76,33 +86,32 @@
     }
 }
 
+/* Specific styles for very small screens */
 @media (max-width: 480px) {
     .services-container {
-        flex-direction: column; /* Stack service buttons vertically on very small screens */
-        align-items: center;
-    }
-
-    .system-metrics {
-        padding: 10px; /* Reduce padding */
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Creates a 3-column layout */
+        gap: 5px; /* Space between buttons */
+        padding: 5px; /* Padding around the grid */
+        max-width: 100%; /* Makes sure the container doesn't exceed the width of the device */
     }
 
     .service-button {
-    /* ... */
-    padding: 0;
-    margin: 5px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 15px; /* Adjusted for app-like rounded corners */
-    transition: background-color 0.3s;
-    width: 80px;
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    /* ... */
+        aspect-ratio: 1 / 1; /* Ensures that width and height are always equal, maintaining a square shape */
+        margin: 0; /* No need for margin as gap provides spacing */
+        font-size: 12px; /* Adjust the font size if necessary */
+        padding: 5px; /* Padding inside the button */
+        border-radius: 15px; /* Rounded corners */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden; /* Ensures content doesn't overflow */
+        text-overflow: ellipsis; /* Prevents text from spilling over */
+        word-wrap: break-word; /* Ensures long words do not cause layout issues */
+        white-space: normal; /* Allows text wrapping */
+    }
 }
+
 
 
 
