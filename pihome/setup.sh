@@ -153,6 +153,9 @@ mkdir -p /mnt/nas/series
 mkdir -p /mnt/nas/music
 mkdir -p /mnt/nas/documents
 
+sudo chown -R pi:pi /mnt/nas/*
+sudo chmod -R 775 /mnt/nas/*
+
 echo_color "Installing Pi-hole..."
 cd ~  # Change directory to the home directory
 git clone --depth 1 https://github.com/pi-hole/pi-hole.git Pi-hole
