@@ -10,6 +10,7 @@ During the setup it asks you to select a drive. It will WIPE AND FORMAT the driv
 ![sd](https://github.com/MrLately/pi-service-dashboard/assets/94589563/cb81cc74-3064-4f89-ab02-b9b909114e6f)
 
 Installation:
+I used pi 5 with lite os and external USB drive for backup already plugged in.
 
 sudo apt install git -y
 
