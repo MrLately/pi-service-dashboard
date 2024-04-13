@@ -11,8 +11,6 @@ During the setup it asks you to select a drive. It will WIPE AND FORMAT the driv
 
 Installation:
 
-https://youtu.be/I0vmhCSVJdc?si=8_aEeWgAN5-MrJO9
-
 sudo apt install git -y
 
 git clone https://github.com/MrLately/pi-service-dashboard
@@ -28,6 +26,8 @@ sudo ./setup.sh
 Follow prompts for selecting drive and setting up pihole.
 
 pi_ip:5000 in the browser and done.
+
+https://youtu.be/I0vmhCSVJdc?si=8_aEeWgAN5-MrJO9
 
 USAGE:
 
