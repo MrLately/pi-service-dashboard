@@ -16,13 +16,6 @@ format, and mount as the shared drive (nas drive).
 <img width="208" alt="sd" src="https://github.com/MrLately/pi-service-dashboard/assets/94589563/cb81cc74-3064-4f89-ab02-b9b909114e6f">
 
 
-You can add more services by following the flow in config.json.
-Add name and url and it will make a button for it in the homepage!
-While your're there edit the username to your own.
-Remember after any edits to run: sudo systemctl restart homepage.service
-
-<img width="448" alt="gh" src="https://github.com/MrLately/pi-service-dashboard/assets/94589563/3d5f4320-2a3c-4426-8e48-bc05baf1e75a">
-
 Installation:
 
 https://youtu.be/I0vmhCSVJdc?si=8_aEeWgAN5-MrJO9
@@ -41,9 +34,9 @@ sudo ./setup.sh
 
 Follow prompts for selecting drive and setting up pihole.
 
-pi_ip:5000 in the browser
+pi_ip:5000 in the browser and done.
 
-USE:
+USAGE:
 
 Add bookmark or pwa to homescreen depending on mobile os. In
 the video above I show how to do it on Android so that it acts 
@@ -55,4 +48,11 @@ iphone
 windows
 mac
 
+furthermore you can add more services later by following the flow 
+in config.json. Add name and url and it will make a button for it 
+in the homepage! While your're there edit the username to your own.
+
+Remember after any edits to run: sudo systemctl restart homepage.service
+
+<img width="448" alt="gh" src="https://github.com/MrLately/pi-service-dashboard/assets/94589563/3d5f4320-2a3c-4426-8e48-bc05baf1e75a">
 
