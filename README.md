@@ -1,6 +1,6 @@
 # Pi Service Dashboard
 
-The Pi Service Dashboard runs a Flask web app that acts as a hub for any web service running on the Pi. This comes with File Browser, Plex, and Pi-hole.
+The Pi Service Dashboard runs a Flask web app that acts as a hub for any web service running on the Pi (doesn't have to be local). This comes with File Browser, Plex, and Pi-hole already.
 
 <img width="192" alt="ah" src="https://github.com/MrLately/pi-service-dashboard/assets/94589563/c2fcb472-7877-4c35-85c3-a5da28e6e307">
 
