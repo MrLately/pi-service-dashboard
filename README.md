@@ -13,7 +13,7 @@ drive for nas and dont mind it being wiped. In the pic I'm
 selecting /dev/sda bc thats the drive I'm wanting to wipe,
 format, and mount as the shared drive (nas drive).
 
-![Screenshot_20240413_093953_RaspController](https://github.com/MrLately/pi-service-dashboard/assets/94589563/f8f0d789-8b75-4327-8144-28473843d411)
+<img width="208" alt="sd" src="https://github.com/MrLately/pi-service-dashboard/assets/94589563/cb81cc74-3064-4f89-ab02-b9b909114e6f">
 
 
 You can add more services by following the flow in config.json.
