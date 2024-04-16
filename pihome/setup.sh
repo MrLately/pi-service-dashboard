@@ -131,7 +131,7 @@ After=network.target
 [Service]
 User=pi
 Group=pi
-ExecStart=/usr/local/bin/filebrowser -r /mnt/nas -p 8080 -d /home/pi/.filebrowser/database.db -b /filebrowser -a 0.0.0.0
+ExecStart=/usr/local/bin/filebrowser -r $MOUNT_POINT -p 8080 -d /home/pi/.filebrowser/database.db -b /filebrowser -a 0.0.0.0
 Restart=always
 
 [Install]
@@ -142,25 +142,26 @@ systemctl daemon-reload
 systemctl enable filebrowser.service
 systemctl start filebrowser.service
 
-echo_color "owning nas..."
-sudo chown -R pi:pi /mnt/nas
-sudo chmod -R 775 /mnt/nas
+echo_color "Setting ownership and permissions on $MOUNT_POINT..."
+sudo chown -R pi:pi $MOUNT_POINT
+sudo chmod -R 775 $MOUNT_POINT
 
-echo_color "Creating commonly used directories within NAS..."
-mkdir -p /mnt/nas/photos
-mkdir -p /mnt/nas/movies
-mkdir -p /mnt/nas/series
-mkdir -p /mnt/nas/music
-mkdir -p /mnt/nas/documents
+echo_color "Creating commonly used directories within $MOUNT_POINT..."
+mkdir -p $MOUNT_POINT/photos
+mkdir -p $MOUNT_POINT/movies
+mkdir -p $MOUNT_POINT/series
+mkdir -p $MOUNT_POINT/music
+mkdir -p $MOUNT_POINT/documents
 
-sudo chown -R pi:pi /mnt/nas/*
-sudo chmod -R 775 /mnt/nas/*
+sudo chown -R pi:pi $MOUNT_POINT/*
+sudo chmod -R 775 $MOUNT_POINT/*
 
 echo_color "Installing Pi-hole..."
 cd ~  # Change directory to the home directory
 git clone --depth 1 https://github.com/pi-hole/pi-hole.git Pi-hole
-cd Pi-hole/automated\ install/
+cd Pi-hole/automated install/
 sudo bash basic-install.sh
 
 echo_color "Setup complete. Visit http://${IP_ADDRESS}:5000 in your browser to access the web application."
+
 
