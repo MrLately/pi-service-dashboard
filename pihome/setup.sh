@@ -159,8 +159,10 @@ sudo chmod -R 775 $MOUNT_POINT/*
 echo_color "Installing Pi-hole..."
 cd ~  # Change directory to the home directory
 git clone --depth 1 https://github.com/pi-hole/pi-hole.git Pi-hole
-cd Pi-hole/automated install/
+# Correctly navigate into the directory
+cd Pi-hole/automated\ install/ || exit
 sudo bash basic-install.sh
+
 
 echo_color "Setup complete. Visit http://${IP_ADDRESS}:5000 in your browser to access the web application."
 
