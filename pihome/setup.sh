@@ -10,8 +10,8 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
-MOUNT_POINT="/mnt/nas"
-SHARE_NAME="nas"
+MOUNT_POINT="/mnt/ninnie"
+SHARE_NAME="ninnie"
 USER_NAME="pi"
 GROUP_NAME="pi"
 
