@@ -7,7 +7,7 @@
     ],
     "drives": [
         {"mount_point": "/", "label": "Pi SD Card"},
-        {"mount_point": "/mnt/ninnie", "label": "NAS Drive"}
+        {"mount_point": "/mnt/nas", "label": "NAS Drive"}
     ]
 }
 
