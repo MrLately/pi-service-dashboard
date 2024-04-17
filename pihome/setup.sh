@@ -82,20 +82,21 @@ deactivate
 
 sudo chown -R pi:pi /home/pi/pi-service-dashboard
 
-# Update the configuration with the Raspberry Pi's IP address and mount point
-echo_color "Updating configuration with Raspberry Pi's IP address and mount point..."
+# Update the configuration with the Raspberry Pi's IP address, mount point, and user name
+echo_color "Updating configuration with Raspberry Pi's IP address, mount point, and user name..."
 apt-get install jq -y  # Ensure jq is installed
 IP_ADDRESS=$(hostname -I | awk '{print $1}')
 CONFIG_FILE="/home/pi/pi-service-dashboard/pihome/config.json"
 
-jq --arg ip "$IP_ADDRESS" --arg mountPoint "$MOUNT_POINT" '
+jq --arg ip "$IP_ADDRESS" --arg mountPoint "$MOUNT_POINT" --arg userName "$GREETING_NAME" '
+    .user_name = $userName |
     (.services[] | select(.name=="Files") | .url)="http://\($ip):8080" |
     (.services[] | select(.name=="Plex") | .url)="http://\($ip):32400/web" |
     (.services[] | select(.name=="Pi-hole") | .url)="http://\($ip)/admin" |
     (.drives[] | select(.label=="NAS Drive") | .mount_point)=$mountPoint
 ' $CONFIG_FILE > temp.json && mv temp.json $CONFIG_FILE
 
-echo_color "Configuration updated with IP: $IP_ADDRESS and mount point: $MOUNT_POINT"
+echo_color "Configuration updated with IP: $IP_ADDRESS, mount point: $MOUNT_POINT, and user name: $GREETING_NAME"
 
 # Create the systemd service file for the homepage service
 echo_color "Creating systemd service file at $ServiceFile"
